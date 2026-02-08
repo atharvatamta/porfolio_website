@@ -22,7 +22,13 @@ export const links: Route.LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
 ];
-
+export function meta({}: Route.MetaArgs) {
+  return [
+    // adding a title and description meta tags for SEO
+    { title: " Friendly Dev App" },
+    { name: "description", content: "Welcome to React Router!" },
+  ];
+}
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -33,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <main className="max-w-6xl mx-auto px-6 my-8">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
