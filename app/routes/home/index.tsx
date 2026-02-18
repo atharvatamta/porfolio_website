@@ -28,7 +28,7 @@ useEffect(() => {
 
   return (
     <>
-      <div>My App</div>
+      <div>Home Page</div>
     </>
   );
 }

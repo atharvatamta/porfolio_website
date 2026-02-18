@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 const Hero = ({
-  name = '[NAME]',
+  name = ' ',
   text = ' I build friendly web experiences and help others become confident, modern developers.',
 }) => {
   return (
@@ -17,7 +17,7 @@ const Hero = ({
         </Link>
         <Link
           to='/contact'
-          className='border border-blue-500 text-blue-400 px-6 py-2 rounded hover:bg-blue-600 hover:text-white transition'
+          className='border border-blue-500 text-blue-400 px-6 py-2 rounded hover:bg-blue-500 hover:text-white transition'
         >
           Contact Me
         </Link>
