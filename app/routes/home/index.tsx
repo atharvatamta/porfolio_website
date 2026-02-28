@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 export function meta({}: Route.MetaArgs) {
   return [
     // adding a title and description meta tags for SEO
-    { title: " Friendly Dev App" },
+    { title: "portfolio website for me" },
     { name: "description", content: "Welcome to React Router!" },
   ];
 }
