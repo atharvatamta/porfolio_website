@@ -1,7 +1,8 @@
 import type { Route } from "./+types/index";
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-
+import * as React from "react";
+import { useState, useEffect } from "react";
+import FeaturedProjects from "~/components/featuredProjects";
+import type { Project } from "~/types.ts";
 export function meta({}: Route.MetaArgs) {
   return [
     // adding a title and description meta tags for SEO
@@ -9,26 +10,19 @@ export function meta({}: Route.MetaArgs) {
     { name: "description", content: "Welcome to React Router!" },
   ];
 }
-
-export default function Home() {
-  const now = new Date().toISOString();
-
-  //document and window are not in server and are only in client side
-  if (typeof window === "undefined") {
-    console.log("server render at", now);
-  } else {
-    console.log("client hydration at", now);
-    //hydration means attached js , event listeners to the static html which is sent by server
-  }
-  //we can use hooks here and they will only run on client side and not on server side
-    //because hooks are only run after client hydration
-useEffect(() => {
-    console.log(window);//moving this after the useEffect gives us an error because window is not defined in server side and useEffect only runs in client side after hydration
-}, []);
-
+export async function loader({
+  request,
+}: Route.LoaderArgs): Promise<{ projects: Project[] }> {
+  const res = await fetch("http://localhost:3001/projects");
+  const data = await res.json();
+  console.log("Fetched projects:", data);
+  return { projects: data };
+}
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const { projects } = loaderData as { projects: Project[] };
   return (
     <>
-      <div>Home Page</div>
+      <FeaturedProjects projects={projects} count={2} />
     </>
   );
 }

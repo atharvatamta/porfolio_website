@@ -2,6 +2,8 @@ import type { Route } from "./+types/details";
 import type { Project } from "~/types";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router";
+import{ AnimatePresence,  motion }from "framer-motion";
+
 export async function clientLoader({
   request,
   params,
@@ -23,7 +25,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
     <>
       <Link
         to="/projects" //take back to projects page
-        className="inline-flex items-center text-blue-400 mb-6 hover:underline"
+        className="flex items-center text-blue-400 mb-6 hover:underline "
       >
         <FaArrowLeft className="mr-2" /> Back to Projects
       </Link>
@@ -42,7 +44,8 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
             {project.title}
           </h1>
           <p className="text-gray-300 text-sm mb-4">
-            {new Date(project.date).toLocaleDateString("en-GB")} • {project.category}
+            {new Date(project.date).toLocaleDateString("en-GB")} •{" "}
+            {project.category}
           </p>
           <p className="text-gray-200 mb-6">{project.description}</p>
           <a
